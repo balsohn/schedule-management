@@ -6,7 +6,9 @@ import com.example.schedulemanagement.entity.Schedule;
 import com.example.schedulemanagement.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -37,4 +39,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         return new ScheduleResponseDto(schedule);
     }
+
+    @Override
+    public List<ScheduleResponseDto> getAllSchedules() {
+        List<Schedule> schedules = scheduleRepository.findAllSchedule();
+
+        List<ScheduleResponseDto> responseDtos = schedules.stream()
+                .map(ScheduleResponseDto::new)
+                .collect(Collectors.toList());
+
+        return responseDtos;
+    }
+
 }

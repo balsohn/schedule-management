@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -60,5 +61,11 @@ public class JdbcScheduleRepository implements ScheduleRepository {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<Schedule> findAllSchedule() {
+        String sql = "SELECT * FROM schedule ORDER BY modified_at DESC";
+        return jdbcTemplate.query(sql, scheduleRowMapper());
     }
 }
