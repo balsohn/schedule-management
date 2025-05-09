@@ -14,7 +14,7 @@ Spring Boot를 활용한 일정 관리 API 서비스입니다. 이 서비스는 
 ### 1. 일정 생성
 * **설명:** 새로운 일정을 등록합니다.
 * **HTTP Method:** `POST`
-* **Endpoint:** `/api/schedules`
+* **Endpoint:** `/api/schedule`
 * **Request Body (JSON):**
 
 ```json
@@ -40,7 +40,7 @@ Spring Boot를 활용한 일정 관리 API 서비스입니다. 이 서비스는 
 ### 2. 전체 일정 조회
 * **설명:** 등록된 모든 일정을 조회합니다. 선택적으로 수정일(`date`) 또는 작성자명(`writer`)으로 필터링할 수 있습니다.
 * **HTTP Method:** `GET`
-* **Endpoint:** `/api/schedules`
+* **Endpoint:** `/api/schedule`
 * **Query Parameters (Optional):**
     * `date`: 조회할 수정일 (형식: `YYYY-MM-DD`, 예: `2023-05-08`)
     * `writer`: 조회할 작성자명 (예: `홍길동`)
@@ -68,7 +68,7 @@ Spring Boot를 활용한 일정 관리 API 서비스입니다. 이 서비스는 
 ### 3. 선택 일정 조회
 * **설명:** 특정 ID의 일정을 상세 조회합니다.
 * **HTTP Method:** `GET`
-* **Endpoint:** `/api/schedules/{id}`
+* **Endpoint:** `/api/schedule/{id}`
     * **Path Variable:**
         * `id`: 조회할 일정의 고유 ID (숫자)
 * **Success Response (200 OK):**
@@ -94,7 +94,7 @@ Spring Boot를 활용한 일정 관리 API 서비스입니다. 이 서비스는 
 ### 4. 선택 일정 수정
 * **설명:** 특정 ID 일정의 `할일(todo)` 또는 `작성자명(writer)`을 수정합니다.
 * **HTTP Method:** `PUT`
-* **Endpoint:** `/api/schedules/{id}`
+* **Endpoint:** `/api/schedule/{id}`
     * **Path Variable:**
         * `id`: 수정할 일정의 고유 ID (숫자)
 * **Request Body (JSON):**
@@ -130,7 +130,7 @@ Spring Boot를 활용한 일정 관리 API 서비스입니다. 이 서비스는 
 ### 5. 선택 일정 삭제
 * **설명:** 특정 ID의 일정을 삭제합니다.
 * **HTTP Method:** `DELETE`
-* **Endpoint:** `/api/schedules/{id}`
+* **Endpoint:** `/api/schedule/{id}`
     * **Path Variable:**
         * `id`: 삭제할 일정의 고유 ID (숫자)
 * **Request Body (JSON):**
@@ -178,13 +178,13 @@ CREATE TABLE schedule (
 
 ## 구현 기능
 ### 레벨 1: 일정 생성 및 조회
-* ✅ 일정 생성: 새로운 일정 등록 기능
-* ✅ 전체 일정 조회: 등록된 모든 일정을 조회하는 기능 (날짜, 작성자 필터링 가능)
-* ✅ 선택 일정 조회: 특정 ID의 일정을 상세 조회하는 기능
+* ⬜ 일정 생성: 새로운 일정 등록 기능
+* ⬜ 전체 일정 조회: 등록된 모든 일정을 조회하는 기능 (날짜, 작성자 필터링 가능)
+* ⬜ 선택 일정 조회: 특정 ID의 일정을 상세 조회하는 기능
 
 ### 레벨 2: 일정 수정 및 삭제
-* ✅ 선택 일정 수정: 특정 ID 일정의 내용과 작성자를 수정하는 기능 (비밀번호 확인 필요)
-* ✅ 선택 일정 삭제: 특정 ID의 일정을 삭제하는 기능 (비밀번호 확인 필요)
+* ⬜ 선택 일정 수정: 특정 ID 일정의 내용과 작성자를 수정하는 기능 (비밀번호 확인 필요)
+* ⬜ 선택 일정 삭제: 특정 ID의 일정을 삭제하는 기능 (비밀번호 확인 필요)
 
 ### 진행중 및 예정 기능
 * ⬜ 레벨 3: 연관 관계 설정
@@ -196,8 +196,8 @@ CREATE TABLE schedule (
 1. 프로젝트 복제
 
 ```bash
-git clone https://github.com/balsohn/schedule.git
-cd schedule
+git clone https://github.com/balsohn/schedule-management.git
+cd schedule-management
 ```
 
 2. 데이터베이스 설정
@@ -211,5 +211,5 @@ cd schedule
 ```
 
 4. API 테스트
-* 기본 URL: `http://localhost:8080/api/schedules`
+* 기본 URL: `http://localhost:8080/api/schedule`
 * Postman 등의 도구를 사용하여 API 테스트

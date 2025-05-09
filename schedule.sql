@@ -1,5 +1,4 @@
--- 데이터베이스가 존재한다면 해당 데이터베이스를 사용하도록 설정 (선택 사항, MySQL 클라이언트에서 직접 USE db_name; 실행 가능)
--- USE your_database_name;
+-- USE sparta_schedule;
 
 -- 기존에 'schedule' 테이블이 존재하면 삭제합니다. (개발 중 반복 테스트 시 유용)
 DROP TABLE IF EXISTS schedule;
