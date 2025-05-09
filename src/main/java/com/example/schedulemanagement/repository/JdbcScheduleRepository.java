@@ -1,6 +1,7 @@
 package com.example.schedulemanagement.repository;
 
 import com.example.schedulemanagement.entity.Schedule;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class JdbcScheduleRepository implements ScheduleRepository {
@@ -47,5 +49,16 @@ public class JdbcScheduleRepository implements ScheduleRepository {
         String sql = "SELECT * FROM schedule WHERE id = ?";
 
         return jdbcTemplate.queryForObject(sql, scheduleRowMapper(), generatedId);
+    }
+
+    @Override
+    public Optional<Schedule> findById(Long id) {
+        try {
+            String sql = "SELECT * FROM schedule WHERE ID = ?";
+            Schedule schedule = jdbcTemplate.queryForObject(sql, scheduleRowMapper(), id);
+            return Optional.of(schedule);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }

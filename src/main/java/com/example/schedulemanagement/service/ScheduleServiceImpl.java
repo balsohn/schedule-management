@@ -6,6 +6,8 @@ import com.example.schedulemanagement.entity.Schedule;
 import com.example.schedulemanagement.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
@@ -26,5 +28,13 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
         return new ScheduleResponseDto(savedSchedule);
+    }
+
+    @Override
+    public ScheduleResponseDto getScheduleById(Long id) {
+        Schedule schedule = scheduleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("선택한 일정은 존재하지 않습니다. ID: " + id));
+
+        return new ScheduleResponseDto(schedule);
     }
 }

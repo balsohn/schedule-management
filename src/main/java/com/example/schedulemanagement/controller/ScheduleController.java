@@ -5,10 +5,7 @@ import com.example.schedulemanagement.dto.ScheduleResponseDto;
 import com.example.schedulemanagement.service.ScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/schedule")
@@ -25,5 +22,12 @@ public class ScheduleController {
         ScheduleResponseDto responseDto = scheduleService.createSchedule(requestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto> getScheduleById(@PathVariable Long id) {
+        ScheduleResponseDto responseDto = scheduleService.getScheduleById(id);
+
+        return ResponseEntity.ok(responseDto);
     }
 }

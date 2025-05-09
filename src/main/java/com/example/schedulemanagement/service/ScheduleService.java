@@ -5,4 +5,5 @@ import com.example.schedulemanagement.dto.ScheduleResponseDto;
 
 public interface ScheduleService {
     ScheduleResponseDto createSchedule(ScheduleRequestDto requestDto);
+    ScheduleResponseDto getScheduleById(Long id);
 }
